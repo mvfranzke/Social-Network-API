@@ -1,5 +1,8 @@
 // import mongoose
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
+
+//import reactionSchema as subdocument in thought model
+const reactionSchema = require('./Reaction');
 
 // sets the schema/blueprint for thoughtSchema based from README guideline
 const thoughtSchema = new Schema(
