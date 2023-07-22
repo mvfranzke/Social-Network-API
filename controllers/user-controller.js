@@ -13,6 +13,15 @@ const userController = {
   }
   //get single user by using their id
   //create a new user
+    async createUser(req, res) {
+    try {
+      const dbUserData = await User.create(req.body);
+      res.json(dbUserData);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
   //update an existing user
   //delete a user, cascade to delete user thoughts as well
   // add other users inside the friends array
