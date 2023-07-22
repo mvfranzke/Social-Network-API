@@ -27,3 +27,5 @@ const userController = {
   // add other users inside the friends array
   // delete other user inside the friends array
 };
+
+module.exports = userController;
