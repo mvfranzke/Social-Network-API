@@ -4,7 +4,7 @@
 const mongoose = require ('mongoose');
 
 //connect to mongodb database using the mongo db URI or the default local URI if not available
-mongoose.connect(process.ENV.MONGODB_URI || 'mongodb://127.0.0.1:27017/socialmedia');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/socialmedia');
 
 //export the connection object returned by mongoose.connect()
 module.exports = mongoose.connection;

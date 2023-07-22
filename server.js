@@ -7,7 +7,7 @@ const express = require ('express');
 const db = require ('./config/connection');
 
 
-const routes = require('./');   //missing
+const routes = require('./routes');   //missing
 
 // Set the port number for the server to listen on.
 const PORT = process.env.PORT || 3001;

@@ -2,9 +2,10 @@
   "name": "social-network-api",
   "version": "1.0.0",
   "description": "Module # 18 NoSQL: Social Network API",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "watch": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/mvfranzke/Social-Network-API/issues"
   },
-  "homepage": "https://github.com/mvfranzke/Social-Network-API#readme"
+  "homepage": "https://github.com/mvfranzke/Social-Network-API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^7.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
 }

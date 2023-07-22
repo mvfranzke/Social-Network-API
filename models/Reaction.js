@@ -1,15 +1,16 @@
 //This will not be a model, but rather will be used as the `reaction` field's subdocument schema in the `Thought` model.
 
 //import mongoose
+const mongoose = require("mongoose");
 const { Schema, Types } = require("mongoose");
 
 // set schema/ blueprint for reaction
 const reactionSchema = new Schema(
   {
     reactionID: {
-      type: Schema.Types.ObjectID,
+      type: Schema.Types.ObjectId,
       //Default value is set to a new ObjectId
-      default: new mongoose.Types.ObjectID(),
+      default: new mongoose.Types.ObjectId()
     },
     reactionBody: {
       type: String,
@@ -32,6 +33,7 @@ const reactionSchema = new Schema(
     toJSON: {
       getters: true,
     },
+    id: false,
   }
 );
 

@@ -7,4 +7,4 @@ const User = require ('./User');
 const Thought = require ('./Thought');
 
 //exports both user and thought to be used in other file
-module.exports = { User, Though};
+module.exports = { User, Thought };
