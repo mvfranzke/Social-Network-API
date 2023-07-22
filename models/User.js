@@ -15,7 +15,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, //regular expression matcing a valid email address
+      match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, //regular expression matcing a valid email address
     },
     // Array of `_id` values referencing the `Thought` model
     thoughts: [
