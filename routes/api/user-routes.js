@@ -20,7 +20,7 @@ router.route('/')
 //routes for getting a single user by their ID, updating a user by their ID, and deleting a user by their ID
 router.route('/:userId')
   .get(getUserById)
-  .post(updateUser)
+  .put(updateUser)
   .delete(deleteUser);
 
 // route for adding a friend to a user by their ID and deleting a friend from a user by their ID and friend ID
