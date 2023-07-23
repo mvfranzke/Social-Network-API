@@ -128,7 +128,7 @@ const thoughtController = {
       );
 
       if (!dbThoughtData) {
-        return res.status(404).json('Not found');
+        return res.status(404).json("Not found");
       }
 
       res.json({
@@ -143,7 +143,28 @@ const thoughtController = {
   },
 
   // delete reaction to thought
-  
+  async deleteReactiontoThought(req, res) {
+    try {
+      const dbThoughtData = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
+        { runValidators: true, new: true }
+      );
+
+      if (!dbThoughtData) {
+        return res.status(404).json("Not found");
+      }
+
+      res.json({
+        success: true,
+        message: "Reaction successfully deleted on thought",
+        user: dbThoughtData,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
 };
 
 module.exports = thoughtController;
