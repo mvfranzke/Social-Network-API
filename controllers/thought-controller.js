@@ -108,7 +108,7 @@ const thoughtController = {
       if (!dbUserData) {
         return res
           .status(404)
-          .json("Thought created but no user found in system");
+          .json('No thought found associated with the user');
       }
 
       res.json({
