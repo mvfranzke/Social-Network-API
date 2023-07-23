@@ -87,6 +87,35 @@ const thoughtController = {
     }
   },
   //delete a thought
+  async deleteThought(req, res) {
+    try {
+      const dbThoughtData = await Thought.findOneAndRemove({
+        _id: req.params.thoughtId,
+      });
+
+      if (!dbThoughtData) {
+        return res.status(404).json('Not found');
+      }
+
+      // remove thought id from user's `thoughts` field
+      const dbUserData = User.findOneAndUpdate(
+        { thoughts: req.params.thoughtId },
+        { $pull: { thoughts: req.params.thoughtId } },
+        { new: true }
+      );
+
+      if (!dbUserData) {
+        return res
+          .status(404)
+          .json('Thought created but no user found in system');
+      }
+
+      res.json('Thought successfully deleted on file');
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
   // add reaction to thought
   // delete reaction to thought
 };
