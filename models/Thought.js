@@ -25,7 +25,7 @@ const thoughtSchema = new Schema(
     reactions: [reactionSchema],
   },
   {
-    toJson: {
+    toJSON: {
       //Include getters (e.g., the 'createdAt' getter) when converting to JSON
       getters: true,
     },

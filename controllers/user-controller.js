@@ -120,6 +120,28 @@ const userController = {
     }
   },
   // delete other user inside the friends array
+  async deleteFriend(req, res) {
+    try {
+      const dbUserdata = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $pull: { friends: req.params.friendId } },
+        { new: true }
+      );
+
+      if (!dbUserdata) {
+        return res.status(404).json('No user found');
+      }
+
+      res.json({
+        success: true,
+        message: "Friend successfully deleted",
+        user: dbUserdata,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
 };
 
 module.exports = userController;
