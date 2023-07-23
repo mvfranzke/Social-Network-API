@@ -35,7 +35,7 @@ const thoughtController = {
       });
 
       if (!dbThoughtData) {
-        return res.status(404).json('Not found');
+        return res.status(404).json("Not found");
       }
 
       res.json({
@@ -49,7 +49,20 @@ const thoughtController = {
     }
   },
   //get all thoughts
+  async getAllThoughts(req, res) {
+    try {
+      const dbThoughtData = await Thought.find().sort({ createdAt: -1 });
 
+      res.json({
+        success: true,
+        message: "Please see all thoughts saved below",
+        user: dbThoughtData,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
   // update a thought
   //delete a thought
   // add reaction to thought
