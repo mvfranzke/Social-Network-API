@@ -6,30 +6,56 @@ This is the 18th assignment or challenge for our bootcamp class. Our assignment 
 
 ## Installation
 
+Run the ```npm install``` to install all the dependencies
+
+To execute, run ```node server```
 
 ## Usage
-Given a social network API, 
 
+URL of Github repository : https://github.com/mvfranzke/Social-Network-API
 
-URL of Github repository : https://github.com/mvfranzke/Tech-Blog
+Video Link (user flow)
 
-Video Link (user flow): https://drive.google.com/file/d/11L4UjozUntE7f-cddXkqF6u1iTU2xQLu/view
+User- GET, POST, PUT, DELETE ( creating new user, viewing users/by id, updating and deleting)
+ * https://drive.google.com/file/d/1hgqf7dbUdaXo8Gtp-V8Sw1bHSBsWivF5/view
 
-Heroku Deployed Link: https://tech-blog-mvfranzke-0d6e84c65085.herokuapp.com/auth
+Friend - POST and DELETE ( adding and deleting a friend)
+* https://drive.google.com/file/d/19ThSIY5sZ1QZgVpesdVAQLos1dcALvrN/view
 
-![Heroku Page Screenshot](./public/images/heroku%20screenshot.jpg "Heroku Landing Page")
+Thought - GET, POST, PUT, DELETE ( creating a new thought, viewing all thoughts/by id, updating and deleting)
+* https://drive.google.com/file/d/1ekBTx6wI6HHHujMsxNSPEOztOVC6UFSV/view
 
+Reaction - POST, DELETE (adding and deleting reaction to a thought)
+* https://drive.google.com/file/d/1F0QgoqqvWLz6UFPX-6hgT3KQL_Wdb11r/view
+
+## User Story
+
+```md
+AS A social media startup
+I WANT an API for my social network that uses a NoSQL database
+SO THAT my website can handle large amounts of unstructured data
+```
+
+## Acceptance Criteria
+
+```md
+GIVEN a social network API
+WHEN I enter the command to invoke the application
+THEN my server is started and the Mongoose models are synced to the MongoDB database
+WHEN I open API GET routes in Insomnia for users and thoughts
+THEN the data for each of these routes is displayed in a formatted JSON
+WHEN I test API POST, PUT, and DELETE routes in Insomnia
+THEN I am able to successfully create, update, and delete users and thoughts in my database
+WHEN I test API POST and DELETE routes in Insomnia
+THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
+```
 ## Credits
 
-Below are additional resources/tutorial I used:
+Please see below additional resources:
 
-* https://getbootstrap.com/
-* https://www.restapitutorial.com/
-* https://sequelize.org/
-* https://expressjs.com/
-* https://expressjs.com/en/4x/api.html
-* https://developer.mozilla.org/en-US/docs/Web/JavaScript
-* https://www.youtube.com/watch?v=DQk3zJlY-eE
+* https://mongoosejs.com/docs/
+* https://nodejs.org/en/docs
+
 
 ## License
 N/A
