@@ -16,7 +16,7 @@ const thoughtController = {
       if (!dbUserData) {
         return res.status(404).json("Thought saved but no user found");
       }
-
+      //message to return after creating a new user on file
       res.json({
         success: true,
         message: "Thought successfully created",
@@ -37,7 +37,7 @@ const thoughtController = {
       if (!dbThoughtData) {
         return res.status(404).json("Not found");
       }
-
+      //message to return after searching thought by its _id
       res.json({
         success: true,
         message: "Please see thought found based from ID query",
@@ -51,8 +51,8 @@ const thoughtController = {
   //get all thoughts
   async getAllThoughts(req, res) {
     try {
-      const dbThoughtData = await Thought.find().sort({ createdAt: -1 });
-
+      const dbThoughtData = await Thought.find().sort({ createdAt: -1 }); //sort descending by createdAt date
+      //message to return after retrieving all thoughts save on file, no filter
       res.json({
         success: true,
         message: "Please see all thoughts saved below",
@@ -75,7 +75,7 @@ const thoughtController = {
       if (!dbThoughtData) {
         return res.status(404).json("No thought found");
       }
-
+      //message to return to update a thought by its `_id
       res.json({
         success: true,
         message: "Thought successfully updated",
@@ -89,6 +89,7 @@ const thoughtController = {
   //delete a thought
   async deleteThought(req, res) {
     try {
+      //Find the thought with the given thoughtId and remove it from the database using Thought.findOneAndRemove
       const dbThoughtData = await Thought.findOneAndRemove({
         _id: req.params.thoughtId,
       });
@@ -96,8 +97,10 @@ const thoughtController = {
       if (!dbThoughtData) {
         return res.status(404).json("Not found");
       }
+      //If the thought is successfully deleted, find the user with the thoughtId in their thoughts array
       const dbUserData = await User.findOneAndUpdate(
         { thoughts: req.params.thoughtId },
+        //update the thoughts array to remove the deleted thought using User.findOneAndUpdate with $pull
         { $pull: { thoughts: req.params.thoughtId } },
         { new: true }
       );
@@ -167,4 +170,5 @@ const thoughtController = {
   },
 };
 
+//export thoughtController to be used in other file
 module.exports = thoughtController;
