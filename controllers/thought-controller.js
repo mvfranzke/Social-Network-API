@@ -94,7 +94,7 @@ const thoughtController = {
       });
 
       if (!dbThoughtData) {
-        return res.status(404).json('Not found');
+        return res.status(404).json("Not found");
       }
       const dbUserData = await User.findOneAndUpdate(
         { thoughts: req.params.thoughtId },
@@ -105,12 +105,12 @@ const thoughtController = {
       if (!dbUserData) {
         return res
           .status(404)
-          .json('Thought created but no user found in system');
+          .json("Thought created but no user found in system");
       }
 
       res.json({
         success: true,
-        message: 'Thought successfully deleted on file',
+        message: "Thought successfully deleted on file",
         user: dbUserData,
       });
     } catch (err) {
@@ -119,7 +119,31 @@ const thoughtController = {
     }
   },
   // add reaction to thought
+  async addReactiontoThought(req, res) {
+    try {
+      const dbThoughtData = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $addToSet: { reactions: req.body } },
+        { runValidators: true, new: true }
+      );
+
+      if (!dbThoughtData) {
+        return res.status(404).json('Not found');
+      }
+
+      res.json({
+        success: true,
+        message: "Reaction successfully added on thought",
+        thought: dbThoughtData,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
+
   // delete reaction to thought
+  
 };
 
 module.exports = thoughtController;
