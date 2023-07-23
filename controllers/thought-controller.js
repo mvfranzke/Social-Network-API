@@ -64,6 +64,28 @@ const thoughtController = {
     }
   },
   // update a thought
+  async updateThought(req, res) {
+    try {
+      const dbThoughtData = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $set: req.body },
+        { runValidators: true, new: true }
+      );
+
+      if (!dbThoughtData) {
+        return res.status(404).json("No thought found");
+      }
+
+      res.json({
+        success: true,
+        message: "Thought successfully updated",
+        user: dbThoughtData,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
   //delete a thought
   // add reaction to thought
   // delete reaction to thought
