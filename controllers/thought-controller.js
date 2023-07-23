@@ -14,9 +14,7 @@ const thoughtController = {
       );
 
       if (!dbUserData) {
-        return res
-          .status(404)
-          .json('Thought saved but no user found');
+        return res.status(404).json("Thought saved but no user found");
       }
 
       res.json({
@@ -29,8 +27,29 @@ const thoughtController = {
       res.status(500).json(err);
     }
   },
-  //get all thoughts
   // get single thought by ID
+  async getThoughtbyId(req, res) {
+    try {
+      const dbThoughtData = await Thought.findOne({
+        _id: req.params.thoughtId,
+      });
+
+      if (!dbThoughtData) {
+        return res.status(404).json('Not found');
+      }
+
+      res.json({
+        success: true,
+        message: "Please see thought found based from ID query",
+        user: dbThoughtData,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
+  //get all thoughts
+
   // update a thought
   //delete a thought
   // add reaction to thought
