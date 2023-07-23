@@ -96,9 +96,7 @@ const thoughtController = {
       if (!dbThoughtData) {
         return res.status(404).json('Not found');
       }
-
-      // remove thought id from user's `thoughts` field
-      const dbUserData = User.findOneAndUpdate(
+      const dbUserData = await User.findOneAndUpdate(
         { thoughts: req.params.thoughtId },
         { $pull: { thoughts: req.params.thoughtId } },
         { new: true }
@@ -110,7 +108,11 @@ const thoughtController = {
           .json('Thought created but no user found in system');
       }
 
-      res.json('Thought successfully deleted on file');
+      res.json({
+        success: true,
+        message: 'Thought successfully deleted on file',
+        user: dbUserData,
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
