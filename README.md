@@ -55,6 +55,8 @@ Please see below additional resources:
 
 * https://mongoosejs.com/docs/
 * https://nodejs.org/en/docs
+* https://stackoverflow.com/questions/7443142/how-do-i-format-dates-from-mongoose-in-node-js
+* https://www.mongodb.com/community/forums/
 
 
 ## License
