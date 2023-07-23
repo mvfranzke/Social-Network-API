@@ -18,12 +18,12 @@ const userController = {
   async getUserById(req, res) {
     try {
       const dbUserData = await User.findOne({ _id: req.params.userId })
-        .select('-__v')
-        .populate('friends')
-        .populate('thoughts');
+        .select("-__v")
+        .populate("friends")
+        .populate("thoughts");
 
       if (!dbUserData) {
-        return res.status(404).json({ message: "No user with this id!" });
+        return res.status(404).json("No user found");
       }
 
       res.json(dbUserData);
@@ -44,6 +44,29 @@ const userController = {
     }
   },
   //update an existing user
+  async updateUser(req, res) {
+    try {
+      const dbUserData = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        {
+          $set: req.body,
+        },
+        {
+          runValidators: true,
+          new: true,
+        }
+      );
+
+      if (!dbUserData) {
+        return res.status(404).json({ message: "No user with this id!" });
+      }
+
+      res.json(dbUserData);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
   //delete a user, cascade to delete user thoughts as well
   // add other users inside the friends array
   // delete other user inside the friends array
